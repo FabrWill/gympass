@@ -2,7 +2,7 @@
   <layout-view>
     <GoogleMap
       class="flex-1"
-      api-key="AIzaSyCKndVDtDA9p9UuaTZj4Mv8tNNnpKws9fA"
+      api-key=""
       style="width: 100%; height: 500px"
       :center="center"
       :zoom="15"
