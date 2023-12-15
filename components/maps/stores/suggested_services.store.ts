@@ -33,16 +33,28 @@ export const useSuggestedServiceStore = defineStore("suggested_services", {
             return;
           }
 
-          this.markers = results.map((result) => {
-            console.log(result);
-            const marker = new window.google.maps.Marker({
-              position: result.geometry.location,
-            });
+          const validMarkers = results.filter((result) => result.geometry);
+          this.markers = validMarkers.map(
+            (
+              result: google.maps.places.PlaceResult
+            ): google.maps.MarkerOptions => {
+              const marker: any = new window.google.maps.Marker({
+                position: result.geometry!.location,
+                // make then green
+                icon: {
+                  path: window.google.maps.SymbolPath.CIRCLE,
+                  scale: 11,
+                  fillColor: "green",
+                  fillOpacity: 0.8,
+                  strokeWeight: 0.8,
+                },
+              });
 
-            return marker;
-          });
+              marker.customInfo = result;
 
-          console.log(this.markers);
+              return marker as google.maps.MarkerOptions;
+            }
+          );
         });
       } catch (error) {
         console.error(error);
