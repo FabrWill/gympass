@@ -37,7 +37,6 @@ export const useSuggestedServiceStore = defineStore("suggested_services", {
             console.log(result);
             const marker = new window.google.maps.Marker({
               position: result.geometry.location,
-              map,
             });
 
             return marker;
