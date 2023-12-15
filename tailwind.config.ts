@@ -7,11 +7,16 @@ export default <Partial<Config>>{
     fontFamily: {
       ...defaultTheme.fontFamily,
       sans: ["Outfit", "sans-serif"],
+      serif: ["Montserrat", "sans-serif"],
     },
     colors: {
       ...colors,
       secondary: "#f66135",
-      primary: "#1a73e8",
+      primary: {
+        600: "#1764ca",
+        500: "#1a73e8",
+        200: "#cde0fa",
+      },
     },
   },
   plugins: [],

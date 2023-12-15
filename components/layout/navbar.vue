@@ -1,5 +1,7 @@
 <template>
-  <nav class="flex justify-between items-center bg-slate-100 text-black p-4">
+  <nav
+    class="fixed w-screen flex justify-between items-center bg-slate-100 text-black p-4"
+  >
     <div class="flex items-center">
       <img
         src="https://employees.bairesdev.com/assets/img/Logo.png"
