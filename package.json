@@ -15,12 +15,14 @@
     "axios": "^1.6.2",
     "google-maps": "^4.3.3",
     "pinia": "^2.1.7",
+    "qs": "^6.11.2",
     "vue3-google-map": "^0.18.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxt/ui": "^2.11.1",
     "@nuxtjs/tailwindcss": "^6.10.1",
+    "@types/qs": "^6.9.10",
     "nuxt": "^3.8.2",
     "nuxt-mdi": "^1.1.1",
     "vue": "^3.3.10",

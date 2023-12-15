@@ -64,7 +64,6 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 
 const login = () => {
-  console.log("tá aquio");
   router.push("/dashboard");
 };
 </script>

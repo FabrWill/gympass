@@ -14,11 +14,11 @@
       </h2>
     </div>
 
+    <div class="invisible" ref="maps"></div>
     <GoogleMap
       class="flex-1 mt-6"
-      ref="maps"
-      api-key="AIzaSyApDsyZ04sbhkYMUom1KTt4rPTkBz5p1RM"
       style="width: 100%; height: 500px"
+      api-key="AIzaSyApDsyZ04sbhkYMUom1KTt4rPTkBz5p1RM"
       :center="location.userPosition"
       :zoom="15"
     >
@@ -26,18 +26,38 @@
         v-if="location && location.userLocation"
         :options="{ position: location.userPosition }"
       />
+
+      <Marker
+        v-for="marker in suggestions.markers"
+        :options="marker"
+        @click="check"
+      />
     </GoogleMap>
   </layout-view>
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch, ref } from "vue";
-import { GoogleMap } from "vue3-google-map";
-import { useLocationStore } from "~/components/maps/stores/location.store";
+import { onMounted, ref, watch } from "vue";
+import { GoogleMap, Marker } from "vue3-google-map";
+import { useUserLocationStore } from "~/components/maps/stores/user_location.store";
+import { useSuggestedServiceStore } from "~/components/maps/stores/suggested_services.store";
 
-const location = useLocationStore();
+const location = useUserLocationStore();
+const suggestions = useSuggestedServiceStore();
 
-onMounted(() => {
-  location.getUserLocation(navigator);
+const maps = ref<google.maps.Map>();
+
+onMounted(async () => {
+  await location.getUserLocation(navigator);
+
+  setTimeout(async () => {
+    await suggestions.getSuggestedServices(location.userPosition, maps.value);
+  }, 1000);
 });
+
+const check = (e: google.maps.MouseEvent) => {
+  console.log(e);
+};
+
+// const apiKey = ref(process.env.GOOGLE_MAPS_API_KEY);
 </script>
