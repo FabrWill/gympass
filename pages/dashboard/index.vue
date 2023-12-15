@@ -18,7 +18,7 @@
     <GoogleMap
       class="flex-1 mt-6"
       style="width: 100%; height: 500px"
-      api-key="AIzaSyApDsyZ04sbhkYMUom1KTt4rPTkBz5p1RM"
+      :api-key="$config.googleMapsApiKey"
       :center="location.userPosition"
       :zoom="15"
     >
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { onMounted, ref } from "vue";
 import { GoogleMap, Marker } from "vue3-google-map";
 import { useUserLocationStore } from "~/components/maps/stores/user_location.store";
 import { useSuggestedServiceStore } from "~/components/maps/stores/suggested_services.store";
@@ -58,6 +58,4 @@ onMounted(async () => {
 const check = (e: google.maps.MouseEvent) => {
   console.log(e);
 };
-
-// const apiKey = ref(process.env.GOOGLE_MAPS_API_KEY);
 </script>
