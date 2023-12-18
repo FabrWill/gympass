@@ -145,6 +145,25 @@ erDiagram
 
 This to-do list outlines the key tasks required to develop the backend and customer flow for the application, focusing on map interaction and service scheduling.
 
+### Customer Flow Development
+
+- [ ] **Map Interface Implementation:**
+
+  - [x] Implement functionality to display markers for gyms and studios on the map.
+  - [ ] Implement a functionality to click on markers to open the scheduling and signature details
+  - [ ] Integrate with backend to validate if is a valid partner and only show then
+
+- [ ] **Service Listing and Details:**
+
+  - [ ] Create components to list services by user.
+  - [ ] Create a template to check info about the signed service
+  - [ ] Create Atomicity to reuse this component for scheduling a service
+
+- [ ] **Scheduling and Sign System:**
+  - [ ] Develop a system to user see how much of discount they can have and to schedule and sign some services and gym's
+  - [ ] Create a Schedule calendar to user see which times is the most popular
+  - [ ] Integrate with backend.
+
 ### Backend Development
 
 - [ ] **Set Up Backend Environment:**
@@ -169,25 +188,8 @@ This to-do list outlines the key tasks required to develop the backend and custo
   - [ ] Write unit tests for backend APIs.
   - [ ] Write integration tests for backend APIs.
   - [ ] Coverage of 70%
+  - [ ] Create Github Actions
 
-### Customer Flow Development
-
-- [ ] **Map Interface Implementation:**
-
-  - [x] Implement functionality to display markers for gyms and studios on the map.
-  - [ ] Implement a functionality to click on markers to open the scheduling and signature details
-  - [ ] Integrate with backend to validate if is a valid partner and only show then
-
-- [ ] **Service Listing and Details:**
-
-  - [ ] Create components to list services by user.
-  - [ ] Create a template to check info about the signed service
-  - [ ] Create Atomicity to reuse this component for scheduling a service
-
-- [ ] **Scheduling and Sign System:**
-  - [ ] Develop a system to user see how much of discount they can have and to schedule and sign some services and gym's
-  - [ ] Create a Schedule calendar to user see which times is the most popular
-  - [ ] Integrate with backend.
 
 4. **User Authentication and Profile Management:**
    - [ ] Set up user authentication and profile management in the frontend 0Auth.
