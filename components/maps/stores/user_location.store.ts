@@ -3,6 +3,8 @@ import type { google } from "google-maps";
 import { defineStore } from "pinia";
 import Marker from "~/domain/maps/marker";
 
+// TO-DO: try a composable
+
 interface State {
   userLocation: google.maps.LatLng | null;
   isLoading: boolean;
