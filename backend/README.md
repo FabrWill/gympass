@@ -5,104 +5,69 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
+  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center">
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
+<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
+<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
+<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
+<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
+<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
+  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
+    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+</p>
+  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
+  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-# Payments
+## Description
 
-Serviço de pagamentos do ecommerce que deve ser utilizado para transformar os dados da requisição em dados utilizados pelo innpay, retorna a confirmação de pagamento e salva dados como arquivo do boleto para consulta
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Sumário
-- [Instalação](#install)
-  - [Pré-requisitos](#preinstall)
-  - [Instalação Local](#local)
-  - [Instalação com Docker](#docker)
-- [Funcionalidades](#functionalities)
-  - [Boleto](#boleto)
-  - [PIX](#pix)
-  - [Cartão de Crédito](#credit-card)
-  - [Innpay](#innpay)
-
-## Instalação
-<div id="install"></div>
-
-### Pré-requisitos
-<div id="preinstall"></div>
-
-```
-Versão do node: 14.08 ou superior
-```
-
-Antes de iniciar a instalação, verifique se a versão mínima requerida do Node.js está instalada no seu sistema.
-
-### Instalação Local
-<div id="local"></div>
-1. Clone o repositório do projeto em seu ambiente local.
-
-```
-git clone [URL do Repositório]
-```
-
-2. Instale as dependências do projeto com:
-
-```
-npm install
-```
-
-3. Inicie o serviço localmente com:
-
-```
-npm run dev
-```
-
-### Instalação com Docker
-<div id="docker"></div>
-Para instalar e rodar o serviço utilizando Docker, execute:
+## Installation
 
 ```bash
-docker-compose up -d
+$ npm install
 ```
 
-## Funcionalidades
-<div id="functionalities"></div>
+## Running the app
 
-Todos os pagamentos que vão para o innpay ao serem retornados com sucesso geram 3 campos na tabela ZK1
-`ZK1_ZMPGIT` = identificação da transação no INNPAY e no Banco, para boletos esse dado é conhecido como **nosso número**.
+```bash
+# development
+$ npm run start
 
-`ZK1_ZMPGID` = informação da transação, código de barra ou qrcode do PIX, ou código de sucesso do cartão
+# watch mode
+$ npm run start:dev
 
-### Boleto
-<div id="boleto"></div>
+# production mode
+$ npm run start:prod
+```
 
-O módulo de payments contém um submodule de boleto onde é possível registrar boletos no innpay
+## Test
 
-S3:
-Os boletos são registrados e salvos no S3 da innova numa pasta `boleto/` com o nome sendo o campo `ZK1_ZMPGIT` **nosso número**
-consulte mais informações sobre acesso e nome de buckets com o time da innova
+```bash
+# unit tests
+$ npm run test
 
-para boletos é necessário registrar os seguintes dados:
-`ZK1_ZPGAGE` = agência
-`ZK1_ZPGCTA` = conta
-`ZK1_ZPGBCO` = banco
+# e2e tests
+$ npm run test:e2e
 
+# test coverage
+$ npm run test:cov
+```
 
-### PIX
-<div id="pix"></div>
+## Support
 
-O PIX é um método de pagamento mais fácil de integrar poucos dados são necessários e o retorno é simples. no controlador de criação do submodulo de pix haverá apenas a necessidade de pegar o usuário conectado através do decorator `@AuthUser`
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-### Cartão de Crédito
-<div id="credit-card"></div>
+## Stay in touch
 
-Nossa solução para pagamentos com cartão de crédito oferece suporte a várias bandeiras e permite transações seguras com autorização em tempo real, além de funcionalidades de pagamento recorrente e armazenamento de cartões com tokenização.
+- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Website - [https://nestjs.com](https://nestjs.com/)
+- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-### Innpay
-<div id="innpay"></div>
+## License
 
-Innpay é um método de pagamento integrado pela innova.
-ele oferece a ponte entre cliente e banco sem a necessidade de homologação das requisições com o banco (processo que pode levar 1 mês ou mais)
-
-apesar disso é importante mapear e retornar todos os dados no formato que seu banco pedem pois o innpay apenas faz o repasse dos dados.
-
-para saber como atender melhor o Banco do Brasil na KFG você pode acessar a documentação: 
-[Documentação de Testes Banco do Brasil(PIX, BOLETO)](https://apoio.developers.bb.com.br/referency/post/5f4fb7f5b71fb5001268ca44)
-
-[Docuemntação de Testes ERede (Crédito)](https://github.com/DevelopersRede/erede-php)
+Nest is [MIT licensed](LICENSE).

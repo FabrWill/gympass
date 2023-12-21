@@ -18,7 +18,7 @@
     <GoogleMap
       class="flex-1 mt-6"
       style="width: 100%; height: 500px"
-      :api-key="$config.googleMapsApiKey"
+      :api-key="apiKey"
       :center="location.userPosition"
       :zoom="15"
     >
@@ -28,7 +28,8 @@
       />
 
       <Marker
-        v-for="marker in suggestions.markers"
+        v-for="(marker, index) in suggestions.markers"
+        :key="index"
         :options="marker"
         @click="check"
       />
@@ -46,6 +47,7 @@ const location = useUserLocationStore();
 const suggestions = useSuggestedServiceStore();
 
 const maps = ref<google.maps.Map>();
+const apiKey = useRuntimeConfig().public.googleMapsApiKey;
 
 onMounted(async () => {
   await location.getUserLocation(navigator);
