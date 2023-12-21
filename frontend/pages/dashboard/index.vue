@@ -28,10 +28,10 @@
       />
 
       <Marker
-        v-for="(marker, index) in suggestions.markers"
+        v-for="(marker, index) in suggestions.markers.value"
         :key="index"
         :options="marker"
-        @click="check"
+        @click="() => check(marker.customInfo)"
       />
     </GoogleMap>
   </layout-view>
@@ -54,7 +54,7 @@ watch([userLocation.userPosition, maps], ([userPosition, maps]: any) => {
   suggestions.getSuggestedServices(userPosition, maps);
 });
 
-const check = (e: google.maps.MouseEvent) => {
-  console.log(e);
+const check = (marker) => {
+  console.log(marker);
 };
 </script>

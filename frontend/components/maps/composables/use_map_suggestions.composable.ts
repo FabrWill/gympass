@@ -36,15 +36,10 @@ export function useMapSuggestions() {
     return results
       .filter(result => result.geometry)
       .map(result => {
+        console.log(result);
         const marker: any = new window.google.maps.Marker({
           position: result.geometry?.location,
-          icon: {
-            path: window.google.maps.SymbolPath.CIRCLE,
-            scale: 11,
-            fillColor: 'green',
-            fillOpacity: 0.8,
-            strokeWeight: 0.8,
-          },
+          icon: `${window.location.origin}/gym_marker.png`,
         });
 
         marker.customInfo = result;
