@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
 
-export function useSuggestedService() {
+export function useMapSuggestions() {
   const markers = ref<google.maps.Marker[]>([]);
   const isLoading = ref(false);
   const error = ref("");

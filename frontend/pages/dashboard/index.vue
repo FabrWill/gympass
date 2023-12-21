@@ -19,12 +19,12 @@
       class="flex-1 mt-6"
       style="width: 100%; height: 500px"
       :api-key="apiKey"
-      :center="location.userPosition"
+      :center="userLocation.userPosition.value"
       :zoom="15"
     >
       <Marker
-        v-if="location && location.userLocation"
-        :options="{ position: location.userPosition }"
+        v-if="userLocation && userLocation.userLocation"
+        :options="{ position: userLocation.userPosition.value }"
       />
 
       <Marker
@@ -40,21 +40,18 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import { GoogleMap, Marker } from "vue3-google-map";
-import { useUserLocationStore } from "~/components/maps/stores/user_location.store";
-import { useSuggestedServiceStore } from "~/components/maps/stores/suggested_services.store";
+import { useUserLocation } from "~/components/maps/composables/use_user_location.composable";
+import { useMapSuggestions } from "~/components/maps/composables/use_map_suggestions.composable";
 
-const location = useUserLocationStore();
-const suggestions = useSuggestedServiceStore();
+const userLocation = useUserLocation();
+const suggestions = useMapSuggestions();
 
 const maps = ref<google.maps.Map>();
 const apiKey = useRuntimeConfig().public.googleMapsApiKey;
 
-onMounted(async () => {
-  await location.getUserLocation(navigator);
-
-  setTimeout(async () => {
-    await suggestions.getSuggestedServices(location.userPosition, maps.value);
-  }, 1000);
+watch([userLocation.userPosition, maps], ([userPosition, maps]: any) => {
+  if (!userPosition || !maps) return;
+  suggestions.getSuggestedServices(userPosition, maps);
 });
 
 const check = (e: google.maps.MouseEvent) => {
