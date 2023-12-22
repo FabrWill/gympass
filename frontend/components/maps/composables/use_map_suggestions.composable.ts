@@ -32,11 +32,11 @@ export function useMapSuggestions() {
     }
   }
 
-  function serializeMarkers(results: google.maps.places.PlaceResult[]) {
+  function serializeMarkers(results: any[]) {
+    console.log(results);
     return results
-      .filter(result => result.geometry)
+      .filter(result => result.geometry && result.business_status === "OPERATIONAL")
       .map(result => {
-        console.log(result);
         const marker: any = new window.google.maps.Marker({
           position: result.geometry?.location,
           icon: `${window.location.origin}/gym_marker.png`,

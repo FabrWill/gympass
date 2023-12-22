@@ -34,17 +34,20 @@
         @click="() => check(marker.customInfo)"
       />
     </GoogleMap>
+
+    <services-sidebar />
   </layout-view>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
 import { GoogleMap, Marker } from "vue3-google-map";
 import { useUserLocation } from "~/components/maps/composables/use_user_location.composable";
 import { useMapSuggestions } from "~/components/maps/composables/use_map_suggestions.composable";
+import { useSidebar } from "~/components/services/sidebar/use_sidebar.composable";
 
 const userLocation = useUserLocation();
 const suggestions = useMapSuggestions();
+const sidebar = useSidebar();
 
 const maps = ref<google.maps.Map>();
 const apiKey = useRuntimeConfig().public.googleMapsApiKey;
@@ -54,7 +57,8 @@ watch([userLocation.userPosition, maps], ([userPosition, maps]: any) => {
   suggestions.getSuggestedServices(userPosition, maps);
 });
 
-const check = (marker) => {
+const check = (marker: any) => {
   console.log(marker);
+  sidebar.openSidebar(marker);
 };
 </script>
