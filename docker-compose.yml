@@ -10,10 +10,11 @@ services:
     volumes:
       - ./frontend:/gympass-frontend
     command: bash -c "npm install && npm i -g nuxt && npm run dev"
+    links:
+      - backend
   backend:
     image: node:20
     container_name: backend
-    network_mode: "host"
     restart: always
     working_dir: /gympass-backend
     ports:
@@ -21,3 +22,16 @@ services:
     volumes:
       - ./backend:/gympass-backend
     command: bash -c "npm install && npm i -g @nestjs/cli && npm run start:dev --inspect"
+    links:
+      - mysql
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: "gympass_db"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "rootpassword"
+    ports:
+      - 3306:3306
