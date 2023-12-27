@@ -7,7 +7,7 @@
       :id="label"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      class="border focus:border-2 border-black-400 focus:border-blue-500 rounded w-full py-2 px-3 text-black-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+      class="border focus:border-2 border-black-400 placeholder:text-slate-400 focus:border-blue-500 rounded w-full py-2 px-3 text-black-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
       :type="type"
       :placeholder="placeholder"
     />
@@ -15,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import type { InputVariant } from "@nuxt/ui/dist/runtime/types";
 import { defineProps } from "vue";
 
 type Props = {
@@ -25,5 +24,5 @@ type Props = {
   modelValue: any;
 };
 
-defineProps<Props & InputVariant>();
+defineProps<Props>();
 </script>

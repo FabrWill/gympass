@@ -14,6 +14,6 @@ export default class SwaggerSetup {
     const document = SwaggerModule.createDocument(instance, config);
 
     SwaggerModule.setup('api', instance, document);
-    Logger.log('Mapped {/api} ', 'SwaggerSetup');
+    Logger.log('Mapped {/api} to Swagger documentation ', 'SwaggerSetup');
   }
 }

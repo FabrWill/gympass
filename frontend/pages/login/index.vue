@@ -6,34 +6,33 @@
       :state="state"
       @submit="onSubmit"
     >
-      <layout-input
-        v-model="state.email"
-        label="E-mail"
-        type="email"
-        placeholder="test@example.com"
-      />
+      <UFormGroup label="Email" name="email" variant="outline">
+        <UInput v-model="state.email" variant="outline" color="black" />
+      </UFormGroup>
 
-      <layout-input
-        v-model="state.password"
-        label="Password"
-        type="password"
-        placeholder="******************"
-      />
+      <UFormGroup label="Password" name="password" variant="outline">
+        <UInput
+          variant="outline"
+          v-model="state.password"
+          type="password"
+          color="black"
+        />
+      </UFormGroup>
 
       <div class="flex flex-col justify-center mt-2">
-        <layout-button class="my-4"> Entrar </layout-button>
-        <layout-button outlined>
+        <UButton block type="submit" color="blue"> Entrar </UButton>
+        <UButton block variant="outline" color="blue" class="my-4">
           <img
             src="https://employees.bairesdev.com/assets/img/brand/Google.svg"
             class="h-5 mx-2"
           />
           Sign in with Google
-        </layout-button>
+        </UButton>
       </div>
 
       <div class="flex w-full text-right justify-end">
         <a
-          class="inline-block align-baseline text-right font-light text-sm text-black hover:text-blue-800"
+          class="inline-block align-baseline text-right font-light text-sm text-black hover:text-blue-500"
           href="#"
         >
           Change Password
@@ -50,9 +49,6 @@ import { z } from "zod";
 import useGympass from "@/shared/http/use_gympass";
 import type { FormSubmitEvent } from "@nuxt/ui/dist/runtime/types";
 
-const router = useRouter();
-const response = useGympass("/login");
-
 const schema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string().min(8, "Must be at least 8 characters"),
@@ -65,8 +61,15 @@ const state = reactive({
   password: undefined,
 });
 
-const onSubmit = (event: FormSubmitEvent<Schema>) => {
-  response.execute();
+const router = useRouter();
+
+const onSubmit = async (event: FormSubmitEvent<Schema>) => {
+  const response = await useGympass("/api/auth/login", {
+    method: "POST",
+    body: state,
+  });
+
+  router.push("/dashboard");
 };
 
 onMounted(() => {});

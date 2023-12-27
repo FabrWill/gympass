@@ -8,11 +8,9 @@
 import type { Button } from "@nuxt/ui/dist/runtime/types";
 import { defineEmits } from "vue";
 
-const props = defineProps<
-  {
-    outlined?: boolean;
-  } & Button
->();
+const props = defineProps<{
+  outlined?: boolean;
+}>();
 
 const buttonStyles = {
   outlined:
