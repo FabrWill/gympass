@@ -4,18 +4,24 @@ import colors from "tailwindcss/colors";
 
 export default <Partial<Config>>{
   theme: {
-    fontFamily: {
-      ...defaultTheme.fontFamily,
-      sans: ["Outfit", "sans-serif"],
-      serif: ["Montserrat", "sans-serif"],
-    },
-    colors: {
-      ...colors,
-      secondary: "#f66135",
-      primary: {
-        600: "#1764ca",
-        500: "#1a73e8",
-        200: "#cde0fa",
+    extend: {
+      fontFamily: {
+        sans: ["Outfit", "sans-serif"],
+        serif: ["Montserrat", "sans-serif"],
+      },
+      colors: {
+        secondary: {
+          900: "#b44423",
+          800: "#cf4f29",
+          700: "#dd552c",
+          600: "#eb5c31",
+          500: "#f66135",
+          400: "#f67851",
+          300: "#f78f70",
+          200: "#f9ae98",
+          100: "#fbcec0",
+          50: "#f9eae8",
+        },
       },
     },
   },

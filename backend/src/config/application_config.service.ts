@@ -16,6 +16,12 @@ export default class ApplicationConfigService {
       database: `${this.config.get('DATABASE_NAME')}`,
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
+      migrationsRun: true,
+      migrations: [__dirname + '/../migrations/*{.ts,.js}'],
     };
+  }
+
+  get jwtSecret(): string {
+    return this.config.get('JWT_SECRET');
   }
 }
