@@ -1,5 +1,5 @@
-import { ref } from 'vue';
-import type Marker from '~/components/maps/domain/marker';
+import { ref } from "vue";
+import type Marker from "~/components/maps/domain/marker";
 
 const marker = ref<Marker | null>(null);
 const isOpen = ref<Boolean>(false);
@@ -14,7 +14,6 @@ function openSidebar(newMarker: Marker) {
   marker.value = newMarker;
 }
 
-// singleton implementation
 export function useSidebar() {
   return { isOpen, openSidebar, closeSidebar, marker };
 }

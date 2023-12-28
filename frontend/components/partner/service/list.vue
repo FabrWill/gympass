@@ -6,8 +6,6 @@
       :name="service.name"
       :key="service.id"
     />
-
-    <partner-service-add-button />
   </div>
 </template>
 

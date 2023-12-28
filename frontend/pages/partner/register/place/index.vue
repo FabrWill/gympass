@@ -16,7 +16,7 @@
       />
     </Maps>
 
-    <partner-service-sidebar />
+    <partner-service-sidebar-register />
   </layout-view>
 </template>
 
@@ -38,8 +38,9 @@ const googleMapsService = computed(() => {
 
 watch(
   [location.userPosition, maps, googleMapsService],
-  ([userPosition, maps]: any) => {
-    if (!userPosition || !maps) return;
+  ([userPosition, maps, services]: any) => {
+    console.log("estou aqui", userPosition, maps, services);
+    if (!userPosition || !maps || !services) return;
     suggestions.getSuggestedServices(userPosition, maps);
   }
 );
