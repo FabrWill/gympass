@@ -1,11 +1,14 @@
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
 export function useMapSuggestions() {
   const markers = ref<google.maps.Marker[]>([]);
   const isLoading = ref(false);
   const error = ref("");
 
-  async function getSuggestedServices(position: google.maps.LatLng, map: google.maps.Map) {
+  async function getSuggestedServices(
+    position: google.maps.LatLng,
+    map: google.maps.Map
+  ) {
     try {
       isLoading.value = true;
 
@@ -13,7 +16,7 @@ export function useMapSuggestions() {
       const request: any = {
         location: position,
         radius: 5000,
-        type: ['gym'],
+        type: ["gym"],
       };
 
       service.nearbySearch(request, (results, status) => {
@@ -33,10 +36,11 @@ export function useMapSuggestions() {
   }
 
   function serializeMarkers(results: any[]) {
-    console.log(results);
     return results
-      .filter(result => result.geometry && result.business_status === "OPERATIONAL")
-      .map(result => {
+      .filter(
+        (result) => result.geometry && result.business_status === "OPERATIONAL"
+      )
+      .map((result) => {
         const marker: any = new window.google.maps.Marker({
           position: result.geometry?.location,
           icon: `${window.location.origin}/gym_marker.png`,

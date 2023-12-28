@@ -1,13 +1,13 @@
 <template>
   <div class="w-full grid-cols-3 gap-2 grid my-4">
-    <services-card
+    <partner-service-card
       v-for="service in selectedServices"
       :brand="service.brand"
       :name="service.name"
       :key="service.id"
     />
 
-    <services-add-button />
+    <partner-service-add-button />
   </div>
 </template>
 

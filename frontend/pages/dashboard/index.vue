@@ -6,7 +6,7 @@
       </h2>
     </div>
 
-    <services-list />
+    <partner-service-list />
 
     <div class="flex flex-col items-start justify-start">
       <h2 class="text-lg font-light font-serif text-gray-800">
@@ -14,51 +14,12 @@
       </h2>
     </div>
 
-    <div class="invisible" ref="maps"></div>
-    <GoogleMap
-      class="flex-1 mt-6"
-      style="width: 100%; height: 500px"
-      :api-key="apiKey"
-      :center="userLocation.userPosition.value"
-      :zoom="15"
-    >
-      <Marker
-        v-if="userLocation && userLocation.userLocation"
-        :options="{ position: userLocation.userPosition.value }"
-      />
+    <Maps> </Maps>
 
-      <Marker
-        v-for="(marker, index) in suggestions.markers.value"
-        :key="index"
-        :options="marker"
-        @click="() => check(marker.customInfo)"
-      />
-    </GoogleMap>
-
-    <services-sidebar />
+    <partner-service-sidebar />
   </layout-view>
 </template>
 
 <script setup lang="ts">
-import { GoogleMap, Marker } from "vue3-google-map";
-import { useUserLocation } from "~/components/maps/composables/use_user_location.composable";
-import { useMapSuggestions } from "~/components/maps/composables/use_map_suggestions.composable";
-import { useSidebar } from "~/components/services/sidebar/use_sidebar.composable";
-
-const userLocation = useUserLocation();
-const suggestions = useMapSuggestions();
-const sidebar = useSidebar();
-
-const maps = ref<google.maps.Map>();
-const apiKey = useRuntimeConfig().public.googleMapsApiKey;
-
-watch([userLocation.userPosition, maps], ([userPosition, maps]: any) => {
-  if (!userPosition || !maps) return;
-  suggestions.getSuggestedServices(userPosition, maps);
-});
-
-const check = (marker: any) => {
-  console.log(marker);
-  sidebar.openSidebar(marker);
-};
+import { Marker } from "vue3-google-map";
 </script>

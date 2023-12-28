@@ -1,25 +1,25 @@
-import { ref, computed, watch } from 'vue';
-import Marker from '../domain/marker';
+// userLocationStore.ts
 
-export function useUserLocation() {
+import { defineStore } from "pinia";
+import { ref, computed } from "vue";
+import Marker from "../domain/marker";
+
+export const UserLocation = defineStore("userLocation", () => {
   const userLocation = ref<google.maps.LatLng>(Marker.defaultMarker());
   const isLoading = ref<boolean>(false);
   const error = ref<string>("");
 
-  const userPosition = computed((): google.maps.LatLng => {
-    return userLocation.value;
-  });
+  const userPosition = computed((): google.maps.LatLng => userLocation.value);
 
   async function getUserLocation(navigator: Navigator) {
     try {
       isLoading.value = true;
-
       const position: any = await getLocationPromise(navigator);
 
-      userLocation.value = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      } as unknown as any;
+      userLocation.value = new google.maps.LatLng(
+        position.coords.latitude,
+        position.coords.longitude
+      );
     } catch (err) {
       console.error(err);
       error.value = `${err}`;
@@ -38,14 +38,6 @@ export function useUserLocation() {
     });
   }
 
-  onMounted(() => {
-    console.log("navigator", navigator);
-    
-    if (navigator) {
-      getUserLocation(navigator);
-    }
-  });
-
   return {
     userLocation,
     isLoading,
@@ -53,4 +45,4 @@ export function useUserLocation() {
     userPosition,
     getUserLocation,
   };
-}
+});

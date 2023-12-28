@@ -71,3 +71,44 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+```mermaid
+erDiagram
+    USER ||--o{ USERS_ASSIGNED_PRODUCTS : has
+    PRODUCT ||--o{ USERS_ASSIGNED_PRODUCTS : assigned
+    USER {
+        int id PK "Primary Key"
+        string email "User Email"
+        string name "User Name"
+        string password "User Password"
+    }
+    PARTNER ||--o{ PARTNER_PRODUCT : offers
+    PRODUCT ||--o{ PARTNER_PRODUCT : included
+    PARTNER {
+        int id PK "Primary Key"
+        string name "Partner Name"
+        string google_place_id "Google Place ID"
+        decimal latitude "Latitude"
+        decimal longitude "Longitude"
+        string image_url "Image URL"
+        enum type "Partner Type"
+        decimal rating "Rating"
+    }
+    PRODUCT {
+        int id PK "Primary Key"
+        decimal price "Product Price"
+        decimal promotional_price "Promotional Price"
+    }
+    PARTNER_PRODUCT {
+        int id PK "Primary Key"
+        int partner_id FK "Foreign Key to PARTNER"
+        int product_id FK "Foreign Key to PRODUCT"
+    }
+    USERS_ASSIGNED_PRODUCTS {
+        int id PK "Primary Key"
+        int user_id FK "Foreign Key to USER"
+        int product_id FK "Foreign Key to PRODUCT"
+        date expiration_date "Expiration Date"
+        decimal contracted_price "Contracted Price"
+    }
+```

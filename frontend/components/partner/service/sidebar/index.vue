@@ -9,7 +9,7 @@
       'opacity-100': isOpen,
     }"
   >
-    <services-view :marker="marker" />
+    <partner-service-view :marker="marker" />
   </div>
 </template>
 
