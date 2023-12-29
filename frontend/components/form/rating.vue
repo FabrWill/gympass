@@ -28,9 +28,11 @@
 <script lang="ts" setup>
 import { defineProps, defineEmits } from "vue";
 
-const props = defineProps({
-  value: Number,
-});
+type Props = {
+  value: Number;
+};
+
+defineProps<Props>();
 
 const emit = defineEmits(["update:value"]);
 

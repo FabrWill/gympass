@@ -64,7 +64,7 @@ const state = reactive({
 const router = useRouter();
 
 const onSubmit = async (event: FormSubmitEvent<Schema>) => {
-  const response = await useGympass("/api/auth/login", {
+  const response = await useGympass("/auth/login", {
     method: "POST",
     body: state,
   });

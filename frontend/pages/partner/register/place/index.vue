@@ -6,17 +6,19 @@
       </h2>
     </div>
 
-    <div class="invisible" ref="maps"></div>
-    <Maps>
-      <Marker
-        v-for="(marker, index) in suggestions.markers.value"
-        :key="index"
-        :options="marker"
-        @click="() => check(marker.customInfo)"
-      />
-    </Maps>
+    <client-only>
+      <div class="invisible" ref="maps"></div>
+      <Maps @ready="onMapIsReady">
+        <Marker
+          v-for="(marker, index) in suggestions.markers.value"
+          :key="index"
+          :options="marker"
+          @click="() => check(marker.customInfo)"
+        />
+      </Maps>
+    </client-only>
 
-    <partner-service-sidebar-register />
+    <partner-service-sidebar-register @select-place="goToNextStep" />
   </layout-view>
 </template>
 
@@ -27,23 +29,24 @@ import { UserLocation } from "~/components/maps/stores/user_location.store";
 import { useSidebar } from "~/components/partner/service/sidebar/use_sidebar.composable";
 
 const suggestions = useMapSuggestions();
+const router = useRouter();
 const sidebar = useSidebar();
 
 const maps = ref<google.maps.Map>();
 const location = UserLocation();
 
-const googleMapsService = computed(() => {
-  return window?.google?.maps?.places;
-});
+const onMapIsReady = () => {
+  if (!location.userPosition || !maps.value) return;
 
-watch(
-  [location.userPosition, maps, googleMapsService],
-  ([userPosition, maps, services]: any) => {
-    console.log("estou aqui", userPosition, maps, services);
-    if (!userPosition || !maps || !services) return;
-    suggestions.getSuggestedServices(userPosition, maps);
-  }
-);
+  suggestions.getSuggestedServices(location.userPosition, maps.value);
+};
+
+const goToNextStep = (place: any) => {
+  router.push({
+    name: "partner-register-place-form",
+    params: { place: place.value },
+  });
+};
 
 const check = (marker: any) => {
   sidebar.openSidebar(marker);

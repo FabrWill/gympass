@@ -11,26 +11,22 @@
     </div>
 
     <div class="flex-row my-6">
-      <form-rating v-model="marker?.rating" />
+      <form-rating :value="marker?.rating ?? 0" />
     </div>
 
     <div class="flex-row text-gray-700">
       <p>{{ marker?.vicinity }}</p>
     </div>
-
-    <div class="flex-row flex-1"></div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { google } from "google-maps";
 import { defineProps } from "vue";
 
 type Props = {
   marker: google.maps.places.PlaceResult;
 };
-
-defineProps<Props>();
+const props = defineProps<Props>();
 </script>
 
 <style>

@@ -32,8 +32,11 @@
 import { useSidebar } from "./use_sidebar.composable";
 
 const { isOpen, marker } = useSidebar();
+const emit = defineEmits(["selectPlace"]);
 
-const selectPlace = () => {};
+const selectPlace = () => {
+  emit("selectPlace", marker);
+};
 </script>
 
 <style>
