@@ -7,7 +7,10 @@
       <span class="text-secondary"> Gympass Partner </span>
     </div>
     <div class="flex-row image-area">
-      <img :src="marker?.photos[0].getUrl()" alt="service image" />"
+      <img
+        :src="marker && marker.photos ? marker.photos[0].getUrl() : ''"
+        alt="service image"
+      />"
     </div>
 
     <div class="flex-row my-6">

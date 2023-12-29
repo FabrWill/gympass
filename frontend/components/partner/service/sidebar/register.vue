@@ -35,7 +35,7 @@ const { isOpen, marker } = useSidebar();
 const emit = defineEmits(["selectPlace"]);
 
 const selectPlace = () => {
-  emit("selectPlace", marker);
+  emit("selectPlace", marker.value);
 };
 </script>
 
