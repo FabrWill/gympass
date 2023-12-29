@@ -8,29 +8,43 @@
     <div
       v-for="item in menu"
       :key="item.text"
-      class="p-4 hover:bg-gray-200 border-r-2 border-transparent hover:border-secondary"
+      class="hover:bg-gray-200 border-r-2 border-transparent hover:border-secondary cursor-pointer"
     >
-      <div class="flex w-48 text-slate-700">
+      <UButton
+        variant="ghost"
+        class="pa-2 flex w-48 text-slate-700"
+        color=""
+        @click="$router.push({ name: item.pageName })"
+      >
         <MdiIcon
           :icon="item.icon"
-          class="ml-4 mr-4"
+          class="ml-4 mr-4 mt-3"
           size="38px"
           viewbox="0 0 32 32"
+          :class="route.name == item.pageName ? 'text-primary' : 'text-gray'"
         />
-        <span class="text-lg"> {{ item.text }} </span>
-      </div>
+        <span
+          class="text-lg"
+          :class="route.name == item.pageName ? 'text-primary' : 'text-gray'"
+        >
+          {{ item.text }}
+        </span>
+      </UButton>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+const route = useRoute();
+
+console.log(route, route.name);
 
 const isExpanded = ref(false);
 
-const menu: { text: string; icon: any }[] = [
-  { text: "Home", icon: "mdiMapSearchOutline" },
-  { text: "Settings", icon: "mdiCog" },
+const menu: { text: string; icon: any; pageName: string }[] = [
+  { text: "Home", icon: "mdiMapSearchOutline", pageName: "dashboard" },
+  { text: "Partners", icon: "mdiMapPlus", pageName: "partner" },
 ];
 </script>
 

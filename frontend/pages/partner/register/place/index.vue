@@ -1,10 +1,6 @@
 <template>
   <layout-view>
-    <div class="flex flex-col items-start justify-start">
-      <h2 class="text-lg font-light font-serif text-gray-800">
-        Select a Place to Register
-      </h2>
-    </div>
+    <layout-title title="Select a Place to Register" />
 
     <client-only>
       <div class="invisible" ref="maps"></div>

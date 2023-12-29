@@ -11,9 +11,9 @@ const form = reactive<PartnerRegisterDTO & google.maps.places.PlaceResult>({
   type: PartnerType.PLACE,
   rating: 0,
   products: [],
-
   photos: [],
   vicinity: "",
+  description: "",
 });
 
 const selectPlace = (place: google.maps.places.PlaceResult) => {

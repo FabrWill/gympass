@@ -10,4 +10,5 @@ export default interface PartnerRegisterDTO {
   type: PartnerType;
   rating: number;
   products: ProductDTO[];
+  description?: string;
 }
