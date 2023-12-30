@@ -10,6 +10,16 @@
       <img
         :src="marker && marker.photos ? marker.photos[0].getUrl() : ''"
         alt="service image"
+        @success="
+          () => {
+            console.log('success');
+          }
+        "
+        @load="
+          () => {
+            console.log('load');
+          }
+        "
       />"
     </div>
 

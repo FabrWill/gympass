@@ -1,13 +1,26 @@
 <template>
   <layout-view>
-    <layout-title title="Register"> </layout-title>
+    <layout-title title="Register">
+      <u-button color="blue" variant="solid" size="xl" class="ml-auto" trailing>
+        <span class="font-sans font-medium">Salvar</span>
+        <mdi-icon icon="mdiContentSave" class="ml-2" />
+      </u-button>
+    </layout-title>
+
     <div class="flex flex-row">
       <div class="flex-1 p-6" style="max-width: 28vw">
-        <partner-service-view :marker="form" />
+        <u-input virant="outline" v-model="form.name" size="xl" required />
 
-        <u-form-group label="Description" name="description" variant="outline">
-          <u-textarea variant="outline" v-model="form.description" />
-        </u-form-group>
+        <layout-image-handler v-model="form.image" />
+
+        <star-rating v-model="form.rating" />
+
+        <u-input
+          virant="outline"
+          v-model="form.vicinity"
+          size="xl"
+          placeholder="Address"
+        />
       </div>
 
       <div class="flex-1 p-6">
@@ -55,13 +68,13 @@
 
           <template #actions-data="{ row }">
             <u-button color="gray" variant="ghost" v-if="!row.editing">
-              <mdi-icon icon="mdiPencil" />
+              <mdi-icon icon="mdiPencil" @click="toogleEdit(row)" />
             </u-button>
             <u-button color="gray" variant="ghost" v-if="!row.editing">
-              <mdi-icon icon="mdiTrashCan" />
+              <mdi-icon icon="mdiTrashCan" @click="removeItem(row)" />
             </u-button>
             <u-button color="gray" variant="ghost" v-if="row.editing">
-              <mdi-icon icon="mdiCheck" @click="saveProductEdit(row)" />
+              <mdi-icon icon="mdiCheck" @click="toogleEdit(row)" />
             </u-button>
           </template>
         </u-table>
@@ -105,8 +118,11 @@ const addANewService = () => {
   });
 };
 
-const saveProductEdit = (product: ProductDTO) => {
-  product.editing = false;
-  console.log(product);
+const toogleEdit = (product: ProductDTO) => {
+  product.editing = !product.editing;
+};
+
+const removeItem = (product: ProductDTO) => {
+  form.products = form.products.filter((p) => p.id !== product.id);
 };
 </script>

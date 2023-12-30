@@ -13,7 +13,6 @@
       <UButton
         variant="ghost"
         class="pa-2 flex w-48 text-slate-700"
-        color=""
         @click="$router.push({ name: item.pageName })"
       >
         <MdiIcon
@@ -37,8 +36,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const route = useRoute();
-
-console.log(route, route.name);
 
 const isExpanded = ref(false);
 

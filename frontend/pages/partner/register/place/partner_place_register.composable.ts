@@ -12,12 +12,14 @@ const form = reactive<PartnerRegisterDTO & google.maps.places.PlaceResult>({
   rating: 0,
   products: [],
   photos: [],
+  image: undefined,
   vicinity: "",
   description: "",
 });
 
-const selectPlace = (place: google.maps.places.PlaceResult) => {
+const selectPlace = async (place: google.maps.places.PlaceResult) => {
   const photo = place.photos ? place.photos[0] : null;
+  console.log(photo);
 
   form.name = place.name;
   form.google_place_id = place.place_id!;
@@ -25,6 +27,8 @@ const selectPlace = (place: google.maps.places.PlaceResult) => {
   form.longitude = place.geometry!.location.lng();
   form.photos = place.photos ?? [];
   form.image_url = photo ? photo.getUrl({}) : "";
+  form.image = undefined;
+  console.log(form.image_url, place.rating, JSON.parse(JSON.stringify(place)));
   form.vicinity = place.vicinity ?? "";
   form.rating = place.rating ?? 0;
 };
