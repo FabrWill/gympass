@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import PartnerType from '../enums/partner_type.enum';
+import { Product } from './product.entity';
 
 @Entity('partner')
 export class Partner {
@@ -26,4 +27,7 @@ export class Partner {
 
   @Column()
   rating: number;
+
+  @OneToMany(() => Product, (product) => product.partner)
+  products: Product[];
 }

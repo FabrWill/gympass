@@ -4,7 +4,7 @@
 
     <layout-title title="Register">
       <u-button color="blue" variant="solid" size="xl" class="ml-auto" trailing>
-        <span class="font-sans font-medium">Save</span>
+        <span class="font-sans font-medium" @click="save">Save</span>
         <mdi-icon icon="mdiContentSave" class="ml-2" />
       </u-button>
     </layout-title>
@@ -123,7 +123,7 @@ const columns = [
   },
 ];
 
-const { form, loading } = usePartnerPlaceRegister();
+const { form, loading, save } = usePartnerPlaceRegister();
 
 const addANewService = () => {
   form.products.push({

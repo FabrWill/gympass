@@ -27,4 +27,23 @@ export default class PartnerPlace
     this.vicinity = place.vicinity ?? "";
     this.rating = place.rating ?? 0;
   }
+
+  toFormData() {
+    const formData = new FormData();
+
+    formData.append("name", this.name);
+    formData.append("google_place_id", this.google_place_id);
+    formData.append("latitude", this.latitude.toString());
+    formData.append("longitude", this.longitude.toString());
+    formData.append("type", this.type);
+    formData.append("rating", this.rating.toString());
+    formData.append("vicinity", this.vicinity);
+    formData.append("description", this.description);
+
+    if (this.image) {
+      formData.append("image", this.image);
+    }
+
+    return formData;
+  }
 }

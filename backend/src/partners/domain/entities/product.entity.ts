@@ -5,6 +5,8 @@ import {
   Column,
   ManyToMany,
   JoinTable,
+  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { Partner } from './partner.entity';
 
@@ -19,19 +21,15 @@ export class Product {
   @Column()
   promotional_price: number;
 
-  @ManyToMany(() => Partner)
-  @JoinTable({
-    name: 'partner_product',
-    joinColumn: {
-      name: 'product_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'partner_id',
-      referencedColumnName: 'id',
-    },
-  })
-  partners: Partner[];
+  @Column()
+  description: string;
+
+  @Column()
+  partner_id: number;
+
+  @ManyToOne(() => Partner, (partner) => partner.products)
+  @JoinColumn({ name: 'partner_id' })
+  partner: Partner;
 
   @ManyToMany(() => User)
   @JoinTable({
