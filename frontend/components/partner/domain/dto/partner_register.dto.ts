@@ -7,7 +7,7 @@ export default interface PartnerRegisterDTO {
   latitude: number;
   longitude: number;
   image_url: string;
-  image?: File;
+  image: File | null;
   type: PartnerType;
   rating: number;
   products: ProductDTO[];

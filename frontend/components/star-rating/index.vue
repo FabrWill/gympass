@@ -22,8 +22,8 @@
       />★
     </label>
 
-    <span class="text-xl">
-      {{ value }}
+    <span class="text-sm ml-3">
+      {{ innerValue }}
     </span>
   </div>
 </template>
@@ -42,7 +42,7 @@ const props = defineProps({
 const emits = defineEmits(["update:value"]);
 
 const innerValue = ref(props.value);
-const tempValue = ref(null);
+const tempValue = ref<number | null>(null);
 const ratings = [1, 2, 3, 4, 5];
 
 watch(
@@ -52,7 +52,7 @@ watch(
   }
 );
 
-const star_over = (index) => {
+const star_over = (index: number) => {
   if (!props.disabled) {
     tempValue.value = innerValue.value;
     innerValue.value = index;
@@ -65,7 +65,7 @@ const star_out = () => {
   }
 };
 
-const set = (value) => {
+const set = (value: number | null) => {
   if (!props.disabled) {
     tempValue.value = value;
     innerValue.value = value;

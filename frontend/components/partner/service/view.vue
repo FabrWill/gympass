@@ -10,16 +10,6 @@
       <img
         :src="marker && marker.photos ? marker.photos[0].getUrl() : ''"
         alt="service image"
-        @success="
-          () => {
-            console.log('success');
-          }
-        "
-        @load="
-          () => {
-            console.log('load');
-          }
-        "
       />"
     </div>
 
@@ -34,12 +24,14 @@
 </template>
 
 <script lang="ts" setup>
+import files from "#tailwind-config/content/files";
 import { defineProps } from "vue";
 
 type Props = {
   marker: google.maps.places.PlaceResult;
 };
-const props = defineProps<Props>();
+
+defineProps<Props>();
 </script>
 
 <style>

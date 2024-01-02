@@ -1,26 +1,43 @@
 <template>
   <layout-view>
+    <UProgress animation="carousel" v-show="loading" />
+
     <layout-title title="Register">
       <u-button color="blue" variant="solid" size="xl" class="ml-auto" trailing>
-        <span class="font-sans font-medium">Salvar</span>
+        <span class="font-sans font-medium">Save</span>
         <mdi-icon icon="mdiContentSave" class="ml-2" />
       </u-button>
     </layout-title>
 
     <div class="flex flex-row">
       <div class="flex-1 p-6" style="max-width: 28vw">
-        <u-input virant="outline" v-model="form.name" size="xl" required />
+        <UFormGroup label="Title">
+          <u-input
+            variant="outline"
+            v-model="form.name"
+            size="xl"
+            class="py-6"
+            required
+          />
+        </UFormGroup>
 
-        <layout-image-handler v-model="form.image" />
+        <UFormGroup label="Image">
+          <layout-image-handler v-model="form.image" class="py-6" />
+        </UFormGroup>
 
-        <star-rating v-model="form.rating" />
+        <UFormGroup label="Rating">
+          <star-rating v-model="form.rating" class="py-6" />
+        </UFormGroup>
 
-        <u-input
-          virant="outline"
-          v-model="form.vicinity"
-          size="xl"
-          placeholder="Address"
-        />
+        <UFormGroup label="Address">
+          <u-input
+            class="py-6"
+            variant="outline"
+            v-model="form.vicinity"
+            size="xl"
+            placeholder=""
+          />
+        </UFormGroup>
       </div>
 
       <div class="flex-1 p-6">
@@ -106,7 +123,7 @@ const columns = [
   },
 ];
 
-const { form } = usePartnerPlaceRegister();
+const { form, loading } = usePartnerPlaceRegister();
 
 const addANewService = () => {
   form.products.push({

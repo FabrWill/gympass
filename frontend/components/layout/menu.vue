@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed z-10 mr-2 overflow-hidden bg-slate-100 menu"
+    class="fixed z-10 mr-2 overflow-hidden bg-slate-100 dark:bg-slate-900 menu"
     style="margin-top: 60px"
     @mouseenter="isExpanded = true"
     @mouseleave="isExpanded = false"

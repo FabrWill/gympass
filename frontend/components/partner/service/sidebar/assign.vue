@@ -1,7 +1,6 @@
 <template>
   <div
-    class="fixed top-0 right-0 bg-slate-100 p-5 transition-all ease-in-out delay-300"
-    style="height: 95vh"
+    class="fixed top-0 right-0 bg-slate-100 dark:bg-slate-900 p-5 transition-all ease-in-out delay-300 pb-16 h-screen"
     :class="{
       'w-0': !isOpen,
       'opacity-0': !isOpen,

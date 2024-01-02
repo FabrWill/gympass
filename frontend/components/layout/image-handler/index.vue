@@ -4,7 +4,7 @@
       Click here to upload an image
     </div>
 
-    <div v-if="imageSrc" class="image-container">
+    <div v-if="imageSrc" class="image-container" @click="triggerFileInput">
       <img :src="imageSrc" alt="Image preview" />
     </div>
 
